@@ -53,45 +53,48 @@ export default function PostDetailPage() {
     const cat = getCategoryName(post.categoryId)
 
     return (
-        <article className="max-w-2xl mx-auto">
+        <>
             {/* back */}
-            <Link
-                to="/"
-                className="inline-flex items-center gap-1.5 text-black/40 text-sm hover:text-black/70 transition-colors mb-8">
-                <ArrowLeft className="w-3.5 h-3.5" /> Kembali
-            </Link>
+            <div className="mb-8 flex items-start">
+                <Link
+                    to="/"
+                    className="inline-flex items-center gap-1.5 text-black/40 text-sm hover:text-black/70 transition-colors">
+                    <ArrowLeft className="w-3.5 h-3.5" /> Kembali
+                </Link>
+            </div>
+            <article className="max-w-2xl md:mx-auto mx-0">
+                {/* category */}
+                {cat && (
+                    <div className="mb-4">
+                        <Badge className={getCategoryColor(post.categoryId!)}>
+                            <Link to={`/category/${cat.slug}`}>{cat.name}</Link>
+                        </Badge>
+                    </div>
+                )}
 
-            {/* category */}
-            {cat && (
-                <div className="mb-4">
-                    <Badge className={getCategoryColor(post.categoryId!)}>
-                        <Link to={`/category/${cat.slug}`}>{cat.name}</Link>
-                    </Badge>
+                {/* title */}
+                <h1 className="font-display text-3xl sm:text-4xl text-black/90 leading-tight mb-4">{post.title}</h1>
+
+                {/* meta */}
+                <p className="text-xs text-black/40 mb-8">{formatDate(post.createdAt)}</p>
+
+                {/* hero image */}
+                <div className="rounded-2xl overflow-hidden mb-8 bg-black/10">
+                    <img src={post.image} alt={post.title} className="w-full aspect-video object-cover" />
                 </div>
-            )}
 
-            {/* title */}
-            <h1 className="font-display text-3xl sm:text-4xl text-black/90 leading-tight mb-4">{post.title}</h1>
+                {/* excerpt */}
+                <p className="text-base text-black/60 leading-relaxed font-medium border-l-2 border-black/20 pl-4 mb-8 italic">
+                    {post.excerpt}
+                </p>
 
-            {/* meta */}
-            <p className="text-xs text-black/40 mb-8">{formatDate(post.createdAt)}</p>
-
-            {/* hero image */}
-            <div className="rounded-2xl overflow-hidden mb-8 bg-black/10">
-                <img src={post.image} alt={post.title} className="w-full aspect-video object-cover" />
-            </div>
-
-            {/* excerpt */}
-            <p className="text-base text-black/60 leading-relaxed font-medium border-l-2 border-black/20 pl-4 mb-8 italic">
-                {post.excerpt}
-            </p>
-
-            {/* body */}
-            <div className="prose prose-sm max-w-none text-black/70 leading-relaxed space-y-4">
-                {post.body.split("\n").map((para, i) => (
-                    <p key={i}>{para}</p>
-                ))}
-            </div>
-        </article>
+                {/* body */}
+                <div className="prose prose-sm max-w-none text-black/70 leading-relaxed space-y-4">
+                    {post.body.split("\n").map((para, i) => (
+                        <p key={i}>{para}</p>
+                    ))}
+                </div>
+            </article>
+        </>
     )
 }

@@ -28,7 +28,7 @@ export default function AdminLayout() {
     }
 
     return (
-        <div className="flex h-screen w-screen bg-linear-to-br from-slate-50 to-slate-100 overflow-hidden">
+        <div className="flex min-h-screen w-full bg-linear-to-br from-slate-50 to-slate-100">
             {/* desktop sidebar */}
             <Sidebar signout={handleSignOut} setSidebar={setSidebarOpen} />
 
@@ -60,7 +60,7 @@ export default function AdminLayout() {
                     )}
                 </header>
 
-                <main className="flex-1 p-4 sm:p-6 lg:p-8 animate-fade-in">
+                <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 animate-fade-in">
                     <Outlet />
                 </main>
             </div>

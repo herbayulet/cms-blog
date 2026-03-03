@@ -72,7 +72,7 @@ export default function AdminPostForm() {
         }
     }, [title, isEdit])
 
-    // Handle image preview
+    // handle image preview
     useEffect(() => {
         if (imageFile instanceof File) {
             const reader = new FileReader()
