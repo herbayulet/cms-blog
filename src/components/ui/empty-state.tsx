@@ -13,8 +13,8 @@ export function EmptyState({
                 <span className="text-3xl">✦</span>
             </div>
             <div className="text-center">
-                <p className="text-sm font-medium text-ink-800">{title}</p>
-                {description && <p className="text-xs text-ink-400 mt-1">{description}</p>}
+                <p className="text-sm font-medium text-black/80">{title}</p>
+                {description && <p className="text-xs text-muted-foreground mt-1">{description}</p>}
             </div>
             {action}
         </div>

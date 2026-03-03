@@ -34,7 +34,7 @@ export function Pagination({
                     variant={p === currentPage ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => onPageChange(p)}
-                    className="min-w-[32px]"
+                    className="min-w-8"
                 >
                     {p}
                 </Button>
