@@ -46,7 +46,7 @@ export default function AdminLayout() {
             )}
 
             {/* main content */}
-            <div className="flex-1 flex flex-col min-w-0">
+            <div className="flex-1 flex flex-col min-w-full-">
                 {/* mobile topbar */}
                 <header className="lg:hidden h-14 bg-white border-b border-black/10 flex items-center px-4 gap-3 sticky top-0 z-30">
                     <button onClick={() => setSidebarOpen(true)} className="text-black/60 p-1">
