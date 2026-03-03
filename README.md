@@ -1,73 +1,256 @@
-# React + TypeScript + Vite
+# ✦ Tulis — Blog & Simple CMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi blog dan CMS sederhana untuk **Frontend Developer Test**, dibangun dengan React + TypeScript, Clerk Auth (Google OAuth), Zustand, Tailwind CSS, dan integrasi API real via Sipabase.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+| Kategori | Teknologi |
+|---|---|
+| Framework | React 18 + Vite + TypeScript |
+| Routing | React Router v6 |
+| State Management | Zustand (with devtools) |
+| Styling | Tailwind CSS |
+| Auth | Clerk (Google OAuth + Email/Password) |
+| Database | Supabase (PostgreSQL) |
+| API Client | Supabase JS SDK |
+| Validasi Form | Zod + React Hook Form |
+| Toast | React Hot Toast |
+| Icons | Lucide React |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Fitur
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🌍 Public (User-facing)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- List posts dengan pagination (10 per halaman)
+- Post detail page (`/post/:slug`)
+- Filter berdasarkan kategori (`/category/:slug`)
+- Multi-author support
+- Loading state, error state, dan empty state
+- mobile-friendly design
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🔐 Authentication (Clerk)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Sign in dengan Google OAuth
+- Sign up dengan email & password
+- Redirect ke dashboard setelah login
+- Protected admin routes
+- Setiap user memiliki post miliknya sendiri
+
+### 🛠 Admin CMS (`/admin`)
+
+- Dashboard
+- Posts: List (milik sendiri), Create, Edit, Delete
+- Categories: List, Create, Edit, Delete
+- Pagination di admin
+- Auto-generate slug
+- Validasi form dengan Zod
+- Delete kategori aman (post tidak ikut terhapus)
+- Sidebar responsive
+
+### 👤 Multi-Author Behavior
+
+| Halaman | Behavior |
+|---|---|
+| Homepage | Menampilkan semua post dari semua user |
+| Admin | Menampilkan hanya post milik user login |
+
+Ownership disimpan menggunakan:
+```
+posts.user_id = Clerk user.id
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🗄 Database Structure (Supabase)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Table: `posts`
+
+| Kolom | Tipe | Keterangan |
+|---|---|---|
+| `id` | int | Primary key |
+| `title` | text | |
+| `slug` | text | Unique |
+| `body` | text | |
+| `excerpt` | text | |
+| `image` | text | |
+| `thumbnail` | text | |
+| `category_id` | int | Foreign key → `categories.id` |
+| `user_id` | text | NOT NULL — Clerk `user.id` |
+| `created_at` | timestamp | |
+
+### Table: `categories`
+
+| Kolom | Tipe | Keterangan |
+|---|---|---|
+| `id` | int | Primary key |
+| `name` | text | |
+| `slug` | text | Unique |
+| `created_at` | timestamp | |
+
+### Foreign Key Behavior
+```sql
+FOREIGN KEY (category_id)
+REFERENCES categories(id)
+ON DELETE SET NULL
 ```
+
+Jika kategori dihapus:
+- Post tetap ada
+- `category_id` menjadi `NULL`
+- UI menampilkan **"Tanpa Kategori"**
+
+---
+
+## 📦 Cara Install & Run
+
+### 1. Clone Project
+```bash
+git clone 
+cd blog-cms
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 🔐 Setup Clerk
+
+1. Buat akun di [https://clerk.com](https://clerk.com)
+2. Buat Application baru
+3. Aktifkan:
+   - Google OAuth
+   - Email + Password
+4. Copy **Publishable Key**
+
+### 🗄 Setup Supabase
+
+1. Buat project di [https://supabase.com](https://supabase.com)
+2. Buat tabel: `posts` dan `categories`
+3. Setup foreign key dengan `ON DELETE SET NULL`
+4. Copy **Project URL** dan **Anon Public Key**
+
+### ⚙️ Environment Variable
+
+Buat file `.env` di root project:
+```env
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxxxxxx
+VITE_SUPABASE_URL=https://xxxxx.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+> ⚠️ Tanpa environment variable ini, aplikasi tidak bisa berjalan.
+
+### ▶️ Jalankan Development Server
+```bash
+npm run dev
+```
+
+Buka: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🏗 Arsitektur
+```
+Component
+   ↓
+Zustand Store
+   ↓
+Supabase Client
+   ↓
+PostgreSQL (Supabase)
+```
+
+**Auth Flow:**
+```
+Clerk → user.id → disimpan sebagai posts.user_id
+```
+
+---
+
+## 📂 Struktur Folder
+```
+src/
+├── api/
+│   ├── posts.ts
+│   └── categories.ts
+├── components/
+│   ├── layout/
+│   └── ui/
+├── pages/
+│   ├── public/
+│   ├── admin/
+│   └── auth/
+├── routes/
+├── store/
+│   ├── postsStore.ts
+│   └── categoriesStore.ts
+├── types/
+└── utils/
+```
+
+---
+
+## 🧠 State Management (Zustand)
+
+**Store utama:**
+
+- `usePostsStore`
+  - `fetchPosts` (public + admin mode)
+  - `fetchPostBySlug`
+  - `createPost` (dengan userId)
+  - `updatePost`
+  - `deletePost`
+
+- `useCategoriesStore`
+  - CRUD categories
+
+**Pattern action:**
+```ts
+set({ loading: true, error: null })
+try {
+  const result = await apiCall()
+  set({ data: result, loading: false })
+} catch (e) {
+  set({ error: e.message, loading: false })
+}
+```
+
+---
+
+## 🛠 Scripts
+```bash
+npm run dev       # Jalankan development server
+npm run build     # Build untuk production
+npm run preview   # Preview build hasil
+npm run lint      # Lint kode
+```
+
+---
+
+## 📌 Catatan Teknis
+
+- Slug auto-generate dari title
+- Gambar menggunakan `picsum.photos`
+- Pagination server-side
+- Admin hanya melihat post miliknya
+- Homepage menampilkan semua post
+- Delete kategori tidak menghapus post
+
+---
+
+## 🔮 Possible Improvements
+
+- [ ] Row Level Security (RLS) Supabase
+- [ ] Author profile page
+- [ ] Role-based access (admin/editor)
+- [ ] Search & sorting
+- [ ] Rich text editor
+
+---
+
+*Dibuat untuk Frontend Developer Hands-on Test 🚀*
