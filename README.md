@@ -227,7 +227,6 @@ try {
 npm run dev       # Jalankan development server
 npm run build     # Build untuk production
 npm run preview   # Preview build hasil
-npm run lint      # Lint kode
 ```
 
 ---
