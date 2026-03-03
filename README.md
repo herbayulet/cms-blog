@@ -110,7 +110,7 @@ Jika kategori dihapus:
 ### 1. Clone Project
 ```bash
 git clone 
-cd blog-cms
+cd cms-blog
 ```
 
 ### 2. Install Dependencies
@@ -150,7 +150,7 @@ VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 npm run dev
 ```
 
-Buka: [http://localhost:5173](http://localhost:5173)
+Buka: [http://localhost:3000](http://localhost:3000)
 
 ---
 
