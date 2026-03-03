@@ -26,17 +26,17 @@ export default function AdminLayout() {
         await signOut()
         navigate("/sign-in")
     }
-    
+
     return (
-        <div className="flex min-h-screen bg-gray-50">
+        <div className="flex h-screen w-screen bg-linear-to-br from-slate-50 to-slate-100 overflow-hidden">
             {/* desktop sidebar */}
-            <Sidebar signout={handleSignOut} setSidebar={setSidebarOpen}/>
+            <Sidebar signout={handleSignOut} setSidebar={setSidebarOpen} />
 
             {/* mobile sidebar overlay */}
             {sidebarOpen && (
                 <div className="fixed inset-0 z-40 lg:hidden">
                     <div
-                        className="absolute inset-0 bg-gray-200 backdrop-blur-sm"
+                        className="absolute inset-0 bg-black/30 backdrop-blur-md"
                         onClick={() => setSidebarOpen(false)}
                     />
                     <div className="relative z-50">
@@ -48,13 +48,13 @@ export default function AdminLayout() {
             {/* main content */}
             <div className="flex-1 flex flex-col min-w-0">
                 {/* mobile topbar */}
-                <header className="lg:hidden h-14 bg-white border-b border-ink-100 flex items-center px-4 gap-3 sticky top-0 z-30">
-                    <button onClick={() => setSidebarOpen(true)} className="text-ink-600 p-1">
+                <header className="lg:hidden h-14 bg-white border-b border-black/10 flex items-center px-4 gap-3 sticky top-0 z-30">
+                    <button onClick={() => setSidebarOpen(true)} className="text-black/60 p-1">
                         <Menu className="w-5 h-5" />
                     </button>
                     <span className=" text-black/80">✦ Tulis Admin</span>
                     {sidebarOpen && (
-                        <button onClick={() => setSidebarOpen(false)} className="ml-auto text-ink-600 p-1">
+                        <button onClick={() => setSidebarOpen(false)} className="ml-auto text-black/60 p-1">
                             <X className="w-5 h-5" />
                         </button>
                     )}
