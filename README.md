@@ -9,7 +9,7 @@ Aplikasi blog dan CMS sederhana untuk **Frontend Developer Test**, dibangun deng
 | Kategori | Teknologi |
 |---|---|
 | Framework | React 18 + Vite + TypeScript |
-| Routing | React Router v6 |
+| Routing | React Router |
 | State Management | Zustand (with devtools) |
 | Styling | Tailwind CSS |
 | Auth | Clerk (Google OAuth + Email/Password) |
