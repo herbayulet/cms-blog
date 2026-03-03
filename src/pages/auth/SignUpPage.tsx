@@ -28,7 +28,7 @@ export default function SignUpPage() {
                             'text-accent-600 hover:text-accent-500',
                     },
                 }}
-                redirectUrl="/admin"
+                forceRedirectUrl="/admin"
                 signInUrl="/sign-in"
             />
 

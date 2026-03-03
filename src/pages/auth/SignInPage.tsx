@@ -30,7 +30,7 @@ export default function SignInPage() {
                         dividerText: 'text-black/40 text-xs',
                     },
                 }}
-                redirectUrl="/admin"
+                forceRedirectUrl="/admin"
                 signUpUrl="/sign-up"
             />
 
