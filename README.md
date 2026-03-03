@@ -242,15 +242,3 @@ npm run lint      # Lint kode
 - Delete kategori tidak menghapus post
 
 ---
-
-## 🔮 Possible Improvements
-
-- [ ] Row Level Security (RLS) Supabase
-- [ ] Author profile page
-- [ ] Role-based access (admin/editor)
-- [ ] Search & sorting
-- [ ] Rich text editor
-
----
-
-*Dibuat untuk Frontend Developer Hands-on Test 🚀*
