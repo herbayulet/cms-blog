@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default function SignUpPage() {
     return (
-        <div className="min-h-screen bg-cream-50 flex flex-col items-center justify-center p-4">
+        <div className="min-h-screen flex flex-col items-center justify-center p-4">
             <Link
                 to="/"
-                className="font-display text-3xl text-ink-900 mb-8 hover:text-accent-600 transition-colors"
+                className=" text-3xl text-black/80 mb-8 hover:text-accent-600 transition-colors"
             >
                 ✦ Blog
             </Link>
@@ -15,15 +15,15 @@ export default function SignUpPage() {
                 appearance={{
                     elements: {
                         rootBox: 'w-full max-w-sm',
-                        card: 'bg-white rounded-2xl shadow-sm border border-ink-100 p-6',
-                        headerTitle: 'font-display text-xl text-ink-900',
-                        headerSubtitle: 'text-sm text-ink-500',
+                        card: 'bg-white rounded-2xl shadow-sm border border-black/10 p-6',
+                        headerTitle: ' text-xl text-black/80',
+                        headerSubtitle: 'text-sm text-black/50',
                         socialButtonsBlockButton:
-                            'border border-ink-200 rounded-lg text-sm font-medium text-ink-700 hover:bg-ink-50 transition-colors',
+                            'border border-black/20 rounded-lg text-sm font-medium text-black/70 hover:bg-black/5 transition-colors',
                         formFieldInput:
-                            'border-ink-200 rounded-lg text-sm focus:ring-ink-800',
+                            'border-black/20 rounded-lg text-sm focus:ring-ink-800',
                         formButtonPrimary:
-                            'bg-ink-900 hover:bg-ink-700 rounded-lg text-sm font-medium transition-colors',
+                            'bg-black/90 hover:bg-black/70 rounded-lg text-sm font-medium transition-colors',
                         footerActionLink:
                             'text-accent-600 hover:text-accent-500',
                     },
@@ -32,7 +32,7 @@ export default function SignUpPage() {
                 signInUrl="/sign-in"
             />
 
-            <p className="mt-6 text-xs text-ink-400">
+            <p className="mt-6 text-xs text-muted-foreground">
                 Sudah punya akun?{' '}
                 <Link
                     to="/sign-in"
