@@ -17,13 +17,13 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
     return (
         <aside
             className={cn(
-                "flex flex-col bg-ink-900 text-cream-100",
+                "flex flex-col bg-gray-200",
                 mobile ? "w-72 min-h-screen" : "w-60 min-h-screen hidden lg:flex",
             )}>
             {/* logo */}
             <div className="h-16 flex items-center px-6 border-b border-ink-700">
-                <Link to="/admin" className="font-display text-xl text-cream-50 tracking-tight">
-                    ✦ Blog <span className="text-xs font-sans text-ink-400 ml-1">admin</span>
+                <Link to="/admin" className=" text-xl tracking-tight">
+                    ✦ Blog <span className="text-xs font-sans text-muted-foreground ml-1">admin</span>
                 </Link>
             </div>
 
@@ -42,8 +42,8 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
                         </div>
                     )}
                     <div className="min-w-0">
-                        <p className="text-sm font-medium text-cream-50 truncate">{user?.fullName ?? "Admin"}</p>
-                        <p className="text-xs text-ink-400 truncate">{user?.emailAddresses?.[0]?.emailAddress ?? ""}</p>
+                        <p className="text-sm font-medium truncate">{user?.fullName ?? "Admin"}</p>
+                        <p className="text-xs text-muted-foreground truncate">{user?.emailAddresses?.[0]?.emailAddress ?? ""}</p>
                     </div>
                 </div>
             </div>
@@ -60,8 +60,8 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
                             cn(
                                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                                 isActive
-                                    ? "bg-cream-50 text-ink-900"
-                                    : "text-ink-300 hover:bg-ink-800 hover:text-cream-50",
+                                    ? "text-black/80"
+                                    : "text-black/55",
                             )
                         }>
                         <Icon className="w-4 h-4 shrink-0" />
@@ -74,13 +74,13 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
             <div className="px-3 pb-4 space-y-0.5">
                 <button
                     onClick={() => navigate("/")}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-ink-300 hover:bg-ink-800 hover:text-cream-50 transition-all duration-150">
+                    className="w-full flex items-center gap-3 px-3 py-2.5 hover:cursor-pointer rounded-lg text-sm font-medium text-ink-300 hover:bg-ink-800 hover transition-all duration-150">
                     <Globe className="w-4 h-4 shrink-0" />
                     Lihat Situs
                 </button>
                 <button
                     onClick={signout}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-ink-300 hover:bg-red-900/50 hover:text-red-300 transition-all duration-150">
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-ink-300 hover:bg-red-900/50 hover:text-white transition-all duration-150">
                     <LogOut className="w-4 h-4 shrink-0" />
                     Logout
                 </button>

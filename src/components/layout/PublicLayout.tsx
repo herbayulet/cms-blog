@@ -9,13 +9,13 @@ const PublicLayout = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="min-h-screen bg-cream-50 flex flex-col">
+        <div className="min-h-screen flex flex-col">
             {/* header */}
-            <header className="sticky top-0 z-30 bg-cream-50/90 backdrop-blur-md border-b border-ink-100">
+            <header className="sticky top-0 z-30 backdrop-blur-md border-b border-black/10">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                     <Link
                         to="/"
-                        className="font-display text-2xl text-ink-900 tracking-tight hover:text-accent-600 transition-colors">
+                        className=" text-2xl text-black/80 tracking-tight hover:text-accent-600 transition-colors">
                         ✦ BLOG CMS
                     </Link>
                     <nav className="flex items-center gap-4">
@@ -57,9 +57,9 @@ const PublicLayout = () => {
             </main>
 
             {/* footer */}
-            <footer className="border-t border-ink-100 py-8">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-400">
-                    <span className="font-display text-ink-300">✦ Blog</span>
+            <footer className="border-t border-black/10 py-8">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+                    <span className=" text-muted">✦ Blog</span>
                     <span>© {new Date().getFullYear()} Blog CMS.</span>
                 </div>
             </footer>

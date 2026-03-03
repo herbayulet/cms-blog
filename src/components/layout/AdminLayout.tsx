@@ -28,7 +28,7 @@ export default function AdminLayout() {
     }
     
     return (
-        <div className="flex min-h-screen bg-cream-100">
+        <div className="flex min-h-screen bg-gray-50">
             {/* desktop sidebar */}
             <Sidebar signout={handleSignOut} setSidebar={setSidebarOpen}/>
 
@@ -36,7 +36,7 @@ export default function AdminLayout() {
             {sidebarOpen && (
                 <div className="fixed inset-0 z-40 lg:hidden">
                     <div
-                        className="absolute inset-0 bg-ink-900/60 backdrop-blur-sm"
+                        className="absolute inset-0 bg-gray-200 backdrop-blur-sm"
                         onClick={() => setSidebarOpen(false)}
                     />
                     <div className="relative z-50">
@@ -52,7 +52,7 @@ export default function AdminLayout() {
                     <button onClick={() => setSidebarOpen(true)} className="text-ink-600 p-1">
                         <Menu className="w-5 h-5" />
                     </button>
-                    <span className="font-display text-ink-900">✦ Tulis Admin</span>
+                    <span className=" text-black/80">✦ Tulis Admin</span>
                     {sidebarOpen && (
                         <button onClick={() => setSidebarOpen(false)} className="ml-auto text-ink-600 p-1">
                             <X className="w-5 h-5" />
