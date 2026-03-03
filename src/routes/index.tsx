@@ -14,11 +14,11 @@ import SignInPage from "@/pages/auth/SignInPage"
 import SignUpPage from "@/pages/auth/SignUpPage"
 
 // admin pages
-import AdminDashboard from "@/pages/admin/AdminDashboard"
 import AdminPosts from "@/pages/admin/AdminPosts"
 import AdminPostForm from "@/pages/admin/AdminPostForm"
 import AdminCategories from "@/pages/admin/AdminCategories"
 import AdminChangePassword from "@/pages/admin/AdminChangePassword"
+import AdminDashboard from "@/pages/admin/AdminDashboard"
 
 // ─── auth guard ───────────────────────────────────────────────────────────────
 function RequireAuth({children}: {children: ReactNode}) {
@@ -26,8 +26,8 @@ function RequireAuth({children}: {children: ReactNode}) {
 
     if (!isLoaded) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-cream-50">
-                <div className="animate-spin w-6 h-6 border-2 border-ink-900 border-t-transparent rounded-full" />
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin w-6 h-6 border-2 border-black/90 border-t-transparent rounded-full" />
             </div>
         )
     }
