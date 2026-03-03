@@ -29,7 +29,7 @@ export function ConfirmDialog({
                         Batal
                     </Button>
 
-                    <Button variant="destructive" size="sm" onClick={onConfirm} loading={loading}>
+                    <Button variant="destructive" className="text-white" size="sm" onClick={onConfirm} loading={loading}>
                         Hapus
                     </Button>
                 </DialogFooter>

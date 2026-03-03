@@ -1,10 +1,7 @@
 import { supabase } from '@/lib/supabase';
 import type { Post, PostFormData } from '@/types';
+import { fileToBase64 } from '@/utils/helpers';
 
-/**
- * mapping DB row → Frontend Post type
- * karena DB pakai snake_case
- */
 function mapPost(row: any): Post {
     return {
         id: row.id,
@@ -93,6 +90,13 @@ export const postsApi = {
     // create
     // ─────────────────────────────────────────
     async create(data: PostFormData, userId: string): Promise<Post> {
+        let imageUrl = '';
+        
+        // kalo ada file, convert ke data URL
+        if (data.image instanceof File) {
+           imageUrl = await fileToBase64(data.image)
+        }
+        
         const { data: inserted, error } = await supabase
             .from('posts')
             .insert({
@@ -100,8 +104,9 @@ export const postsApi = {
                 slug: data.slug,
                 body: data.body,
                 excerpt: data.excerpt,
-                image: data.image,
-                thumbnail: data.thumbnail,
+                image: imageUrl,
+                // kalo ga ada thumbnail, make image data URL sebagai thumbnail
+                thumbnail: data.thumbnail || imageUrl || '',
                 category_id: data.categoryId,
                 user_id: userId
             })
@@ -117,17 +122,30 @@ export const postsApi = {
     // update
     // ─────────────────────────────────────────
     async update(id: number, data: Partial<PostFormData>): Promise<Post> {
+        let imageUrl = data.image;
+        
+        // kalo ada file baru, convert ke data URL
+        if (data.image instanceof File) {
+            imageUrl = await fileToBase64(data.image)
+        }
+        
+        const updateData: any = {
+            title: data.title,
+            slug: data.slug,
+            body: data.body,
+            excerpt: data.excerpt,
+            thumbnail: data.thumbnail ?? (imageUrl || undefined),
+            category_id: data.categoryId,
+        };
+
+        // hanya update image jika ada
+        if (imageUrl) {
+            updateData.image = imageUrl;
+        }
+        
         const { data: updated, error } = await supabase
             .from('posts')
-            .update({
-                title: data.title,
-                slug: data.slug,
-                body: data.body,
-                excerpt: data.excerpt,
-                image: data.image,
-                thumbnail: data.thumbnail,
-                category_id: data.categoryId,
-            })
+            .update(updateData)
             .eq('id', id)
             .select()
             .single();

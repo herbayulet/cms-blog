@@ -19,7 +19,7 @@ export interface PostFormData {
     slug: string;
     excerpt: string;
     body: string;
-    image: string;
+    image?: File | string | null;
     thumbnail: string;
 }
 
