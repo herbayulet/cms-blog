@@ -235,8 +235,6 @@ npm run lint      # Lint kode
 ## 📌 Catatan Teknis
 
 - Slug auto-generate dari title
-- Gambar menggunakan `picsum.photos`
-- Pagination server-side
 - Admin hanya melihat post miliknya
 - Homepage menampilkan semua post
 - Delete kategori tidak menghapus post
