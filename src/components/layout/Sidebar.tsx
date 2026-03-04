@@ -17,20 +17,20 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
     return (
         <aside
             className={cn(
-                "flex flex-col border-r border-border",
+                "flex flex-col border-r border-border h-full overflow-y-auto",
                 mobile
                     ? "w-72 min-h-screen bg-white backdrop-blur-xl"
                     : "w-60 min-h-screen hidden lg:flex bg-background",
             )}>
             {/* logo */}
-            <div className="h-16 flex items-center px-6 border-b border-ink-700">
+            <div className="h-16 flex items-center px-6 border-b border-black/70 shrink-0">
                 <Link to="/admin" className=" text-xl tracking-tight">
                     ✦ Blog <span className="text-xs font-sans text-muted-foreground ml-1">admin</span>
                 </Link>
             </div>
 
             {/* user info */}
-            <div className="px-4 py-4 border-b border-black/70">
+            <div className="px-4 py-4 border-b border-black/70 shrink-0">
                 <div className="flex items-center gap-3">
                     {user?.imageUrl ? (
                         <img
@@ -63,7 +63,7 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
                         className={({isActive}) =>
                             cn(
                                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
-                                isActive ? "text-black/80" : "text-black/55",
+                                isActive ? "text-black/80 bg-black/10" : "text-black/55",
                             )
                         }>
                         <Icon className="w-4 h-4 shrink-0" />
