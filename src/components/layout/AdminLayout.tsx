@@ -28,7 +28,7 @@ export default function AdminLayout() {
     }
 
     return (
-        <div className="flex h-screen w-screen bg-linear-to-br from-slate-50 to-slate-100 overflow-hidden">
+        <div className="flex h-screen w-screen bg-linear-to-br from-slate-50 to-slate-100">
             {/* desktop sidebar */}
             <Sidebar signout={handleSignOut} setSidebar={setSidebarOpen} />
 
@@ -46,7 +46,7 @@ export default function AdminLayout() {
             )}
 
             {/* main content */}
-            <div className="flex-1 flex flex-col min-w-0">
+            <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
                 {/* mobile topbar */}
                 <header className="lg:hidden h-14 bg-white border-b border-black/10 flex items-center px-4 gap-3 sticky top-0 z-30">
                     <button onClick={() => setSidebarOpen(true)} className="text-black/60 p-1">
@@ -60,7 +60,7 @@ export default function AdminLayout() {
                     )}
                 </header>
 
-                <main className="flex-1 p-4 sm:p-6 lg:p-8 animate-fade-in">
+                <main className="flex-1 min-h-0 p-4 sm:p-6 lg:p-8 animate-fade-in">
                     <Outlet />
                 </main>
             </div>
