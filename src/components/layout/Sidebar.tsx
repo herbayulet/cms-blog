@@ -17,11 +17,16 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
     return (
         <aside
             className={cn(
-                "flex flex-col border-r border-border h-full overflow-y-auto",
+                "flex flex-col border-r border-border",
                 mobile
                     ? "w-72 min-h-screen bg-white backdrop-blur-xl"
                     : "w-60 min-h-screen hidden lg:flex bg-background",
-            )}>
+            )}
+            style={{
+                height: "100dvh",
+                WebkitOverflowScrolling: "touch",
+            }}
+            >
             {/* logo */}
             <div className="h-16 flex items-center px-6 border-b border-black/70 shrink-0">
                 <Link to="/admin" className=" text-xl tracking-tight">
@@ -53,7 +58,13 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
             </div>
 
             {/* nav */}
-            <nav className="flex-1 px-3 py-4 space-y-0.5">
+            <nav className="px-3 py-4 space-y-0.5" 
+                style={{
+                    flex: "1 1 0",
+                    overflowY: "auto",
+                    WebkitOverflowScrolling: "touch",
+                    minHeight: 0,
+                }}>
                 {navItems.map(({to, label, icon: Icon, end}) => (
                     <NavLink
                         key={to}
@@ -73,10 +84,10 @@ const Sidebar = ({signout, setSidebar, mobile = false}: SidebarProps) => {
             </nav>
 
             {/* bottom actions */}
-            <div className="px-3 pb-4 space-y-0.5">
+            <div className="px-3 pb-4 space-y-0.5 shrink-0 border-t border-black/10 pt-2">
                 <button
                     onClick={() => navigate("/")}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 hover:cursor-pointer rounded-lg text-sm font-medium text-black/70 hover:bg-ink-800 hover transition-all duration-150">
+                    className="w-full flex items-center gap-3 px-3 py-2.5 hover:cursor-pointer rounded-lg text-sm font-medium text-black/70 hover:bg-black/45 hover:text-white hover transition-all duration-150">
                     <Globe className="w-4 h-4 shrink-0" />
                     Lihat Situs
                 </button>
