@@ -1,6 +1,6 @@
 # ✦ Tulis — Blog & Simple CMS
 
-Aplikasi blog dan CMS sederhana untuk **Frontend Developer Test**, dibangun dengan React + TypeScript, Clerk Auth (Google OAuth), Zustand, Tailwind CSS, dan integrasi API real via Sipabase.
+Aplikasi blog dan CMS sederhana, dibangun dengan React + TypeScript, Clerk Auth (Google OAuth), Zustand, Tailwind CSS, dan integrasi API real via Sipabase.
 
 ---
 
